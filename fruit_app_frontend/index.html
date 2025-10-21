@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit App</title>
+    <script src="script.js"></script>
+    <style>
+        table, th, td, caption {
+            border: thin solid #a0a0a0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-width: thin 0 0 thin;
+            margin: 0 0 1em;
+            table-layout: auto;
+            max-width: 100%;
+        }
+        th, td {
+            font-weight: normal;
+            text-align: left;
+        }
+        th, caption {
+            background-color: #f1f3f4;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Fruit App</h1>
+    <table id="fruit-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody id="fruit-list">
+        </tbody>
+    </table>
+</body>
+</html>
