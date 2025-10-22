@@ -1,41 +1,48 @@
-# Fruit App - Django Backend with Frontend
+# Fruit App - Django Full-Stack Application
 
-A simple web application for displaying fruit data, built with Django as a backend API and Vanilla JavaScript as frontend.
+A full-stack web application for displaying fruit data, built with Django using server-side rendering.
 
 ## 📋 Project Overview
 
-The Fruit App is a learning and demonstration application that provides a REST API for fruit data. The project consists of a Django backend that delivers JSON data about various fruits, and a simple HTML/JavaScript frontend for displaying this data.
+The Fruit App is a learning and demonstration application built with Django. The project uses Django's template system to render HTML pages that display fruit data directly from the backend, providing a simple and integrated full-stack solution. The project is organized into separate backend and frontend directories for better code organization.
 
 ## 🚀 Technologies Used
 
 ### Backend
 - **Django 5.2.7** - Python Web Framework
+- **Django Templates** - Server-side rendering
 - **django-cors-headers 4.9.0** - For Cross-Origin Resource Sharing (CORS)
 - **SQLite** - Default database (integrated via Django)
 
 ### Frontend
+- **Django Template Language (DTL)** - Template rendering
 - **HTML5** - Web page structure
-- **Vanilla JavaScript** - For API calls and DOM manipulation
-- **CSS** - Simple styling for table display
+- **CSS** - Styling for the application
 
 ## 📁 Project Structure
 
 ```
 da-intensivkurs-backend-fruit-app/
-├── core/                    # Django project configuration
-│   ├── settings.py         # Django settings
-│   ├── urls.py            # Main URL configuration
-│   └── wsgi.py            # WSGI configuration
-├── fruit_app/              # Django app for fruits
-│   ├── views.py           # API endpoints
-│   ├── urls.py            # App-specific URLs
-│   └── models.py          # Data models (currently empty)
-├── fruit_app_frontend/     # Frontend files
-│   ├── index.html         # Main HTML file
-│   └── script.js          # JavaScript for API calls
-├── db.sqlite3             # SQLite database file
-├── manage.py              # Django management script
-└── requirements.txt       # Python dependencies
+├── backend/                 # Django backend application
+│   ├── core/               # Django project configuration
+│   │   ├── settings.py    # Django settings
+│   │   ├── urls.py        # Main URL configuration
+│   │   └── wsgi.py        # WSGI configuration
+│   ├── fruit_app/         # Django app for fruits
+│   │   ├── views.py       # Views and logic
+│   │   ├── urls.py        # App-specific URLs
+│   │   ├── models.py      # Data models
+│   │   ├── templates/     # HTML templates
+│   │   │   └── fruit_app/ # App-namespaced templates
+│   │   └── static/        # Static files (CSS, JS, images)
+│   │       └── fruit_app/ # App-namespaced static files
+│   ├── db.sqlite3         # SQLite database file
+│   ├── manage.py          # Django management script
+│   └── requirements.txt   # Python dependencies
+├── frontend/               # Optional standalone frontend files (Old files)
+│   ├── index.html         # Static HTML (for reference)
+│   └── script.js          # JavaScript (for reference)
+└── README.md              # This file
 ```
 
 ## 🛠️ Installation and Setup
@@ -52,6 +59,7 @@ cd da-intensivkurs-backend-fruit-app
 
 ### 2. Create virtual environment (recommended)
 ```bash
+cd backend
 python -m venv .venv
 # Windows
 .venv\Scripts\activate
@@ -67,58 +75,67 @@ pip install -r requirements.txt
 ### 4. Start Django project
 ```bash
 python manage.py runserver
+
+
+for testing with static files use:
+
+python manage.py runserver --insecure
 ```
 
 The server runs by default on `http://127.0.0.1:8000/`
 
 ## 📖 Usage
 
-### Backend API
+### Accessing the Application
 
-**GET `/fruits/`**
-- Returns a JSON list of all fruits
-- Example URL: `http://127.0.0.1:8000/fruits/`
+1. Start the Django development server:
+```bash
+python manage.py runserver
 
-Example Response:
-```json
-[
-    {"name": "Apple", "color": "Red", "weight": "150g"},
-    {"name": "Banana", "color": "Yellow", "weight": "120g"},
-    {"name": "Orange", "color": "Orange", "weight": "130g"}
-    // ... more fruits
-]
+
+for testing with static files use:
+
+python manage.py runserver --insecure
 ```
 
-### Frontend
+2. Open your browser and navigate to:
+   - Main page: `http://127.0.0.1:8000/fruits/`
+   
+3. The fruits will be displayed directly in the Django-rendered HTML page
 
-1. Start Django server (see Installation)
-2. Open `fruit_app_frontend/index.html` in a web browser
-3. Fruits will be automatically displayed in a table
-
-**Note:** The frontend must be opened separately as it is not served through Django.
+**Note:** The application now uses Django's template system, so everything is served through Django on port 8000.
 
 ## ⚙️ Key Features
 
-- **REST API**: Simple GET endpoints for fruit data
-- **CORS Support**: Enables frontend-backend communication
-- **Responsive Design**: Simple but functional frontend design
-- **Asynchronous Data Loading**: JavaScript fetch API for smooth user experience
-- **Error Handling**: 404 errors for invalid requests
-
+- **Django Templates**: Server-side rendering with Django Template Language
+- **Integrated Full-Stack**: Backend and frontend served from a single Django application
+- **Simple Data Display**: Clean table-based presentation of fruit data
+- **Easy to Extend**: Add new fruits or modify templates easily
+- **Error Handling**: Proper HTTP error responses
 ## 🔧 Development
 
 ### Adding New Fruits
-Edit the `fruits` list in `fruit_app/views.py`:
+Edit the `fruits` list in `backend/fruit_app/views.py`:
 
 ```python
 fruits = [
-    {"name": "New Fruit", "color": "Color", "weight": "Weight"},
+    {"name": "Apfel", "weight": 100, "color": "Rot", "ordered": True},
     # ... existing fruits
 ]
 ```
 
-### Adjusting CORS Settings
-The CORS configuration is located in `core/settings.py` and is already set up for local development.
+### Modifying Templates
+Edit the HTML templates in the `backend/fruit_app/templates/fruit_app/` directory to change the appearance or layout of the application.
+
+### Adding Static Files
+Add CSS, JavaScript, or image files to `backend/fruit_app/static/fruit_app/` and reference them in your templates using:
+```django
+{% load static %}
+<link rel="stylesheet" href="{% static 'fruit_app/style.css' %}">
+```
+
+### CORS Settings
+The CORS configuration is located in `backend/core/settings.py`. This may not be necessary anymore if you're only using Django templates without separate frontend API calls.
 
 ## 🤝 Contributing
 

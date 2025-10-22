@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'fruit_app/css/style.css' %}">
+</head>
+<body class="not-found">
+    <h1>Hier gibt es nichts zu sehen!</h1>
+    <h3>Ups, da hast du wohl die falsche Frucht gewählt :)</h3>
+    <img src="{% static 'fruit_app/img/notFound.gif' %}" alt="Fruit App Logo">
+</body>
+</html>

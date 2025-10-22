@@ -1,0 +1,36 @@
+{% extends "fruit_app/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="parent">
+        <!-- Nicht Bestellte Früchte -->
+        <div class="div1">
+            <h2>Nicht Bestellte Früchte</h2>
+            {% for fruit in fruits %}
+                {% if not fruit.ordered %}
+                    <div class="fruit-card">
+                        <h3>{{ fruit.name }}</h3>
+                        <img src="{% static 'fruit_app/img/' %}{{ fruit.name|lower }}.jpg" alt="{{ fruit.name }}">
+                        <p>Gewicht: {{ fruit.weight }}g</p>
+                        <p>Farbe: {{ fruit.color }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Bestellte Früchte -->
+        <div class="div2">
+            <h2>Bestellte Früchte</h2>
+            {% for fruit in fruits %}
+                {% if fruit.ordered %}
+                    <div class="fruit-card">
+                        <h3>{{ fruit.name }}</h3>
+                        <img src="{% static 'fruit_app/img/' %}{{ fruit.name|lower }}.jpg" alt="{{ fruit.name }}">
+                        <p>Gewicht: {{ fruit.weight }}g</p>
+                        <p>Farbe: {{ fruit.color }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

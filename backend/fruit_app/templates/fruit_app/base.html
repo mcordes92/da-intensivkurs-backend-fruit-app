@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'fruit_app/css/style.css' %}">
+</head>
+<body>
+    {% include "fruit_app/header.html" %}
+    {% block content %}
+    {% endblock %}
+    {% block infos %}
+    {% endblock %}
+</body>
+</html>
